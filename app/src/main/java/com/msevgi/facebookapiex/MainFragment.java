@@ -15,6 +15,10 @@ import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
+import com.facebook.widget.ProfilePictureView;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainFragment extends Fragment {
 
@@ -31,10 +35,11 @@ public class MainFragment extends Fragment {
         }
     };
 
+    private ProfilePictureView imageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_my, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        imageView=(ProfilePictureView) view.findViewById(R.id.imageview_profile);
         LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
         // authButton.setReadPermissions(Arrays.asList("user_likes", "user_status"));
@@ -101,6 +106,12 @@ public class MainFragment extends Fragment {
                             Log.i("userd id", "mustafa " + user.getId());
                             Log.i("name view", user.getName());
                             BusProvider.getInstance().post(new Model(user.getId()));
+                            try {
+                                URL image_value = new URL("http://graph.facebook.com/"+ user.getId()+ "/picture?type=large");
+//                                Picasso.with(getActivity().getApplicationContext()).load(image_value).
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            }
 //                            user_ID = user.getId();//user id
 //                            profileName = user.getName();//user's profile name
 //                            userNameView.setText(user.getName());

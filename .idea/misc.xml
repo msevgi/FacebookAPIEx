@@ -2,8 +2,10 @@
 <project version="4">
   <component name="EclipseCodeFormatter">
     <option name="defaultSettings" value="true" />
-    <option name="id" value="1415222997294" />
+    <option name="id" value="1393228206356" />
     <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="$USER_HOME$/Downloads/MCP_Format_Profile v10.xml" />
+    <option name="selectedJavaProfile" value="MCP" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />

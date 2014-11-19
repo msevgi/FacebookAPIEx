@@ -2,20 +2,21 @@ package com.msevgi.facebookapiex;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
 
+import com.facebook.widget.ProfilePictureView;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 public class MyActivity extends FragmentActivity {
 
     private MainFragment mainFragment;
-Bundle savedInstance;
+private ProfilePictureView imageView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.savedInstance=savedInstanceState;
+        setContentView(R.layout.activity_my);
         getBus().register(this);
+        imageView=(ProfilePictureView) findViewById(R.id.imageview_profile);
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
             mainFragment = new MainFragment();
@@ -43,7 +44,8 @@ Bundle savedInstance;
 
     @Subscribe
     public void getId(Model user_id) {
-        Toast.makeText(getApplicationContext(), "asdfasfgd", Toast.LENGTH_LONG).show();
+       imageView.setProfileId(user_id.getUser_id());
+//        Picasso.with(getApplicationContext()).load("http://graph.facebook.com/" + user_id.getUser_id() + "/picture").into(imageView);
 
     }
 }
