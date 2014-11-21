@@ -6,15 +6,18 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:name="com.msevgi.facebookapiex.MainFragment"/>
 
-    <com.facebook.widget.ProfilePictureView
+    <ImageView
         android:padding="50dp"
         android:id="@+id/imageview_profile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+
     <Button
         android:layout_margin="50dp"
         android:layout_width="match_parent"
