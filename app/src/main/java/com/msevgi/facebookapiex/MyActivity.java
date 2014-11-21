@@ -1,12 +1,13 @@
 package com.msevgi.facebookapiex;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import com.squareup.picasso.Picasso;
 
 public class MyActivity extends FragmentActivity {
 
@@ -18,6 +19,7 @@ public class MyActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         getBus().register(this);
+        imageView = (ImageView) findViewById(R.id.imageview_profile);
 
 //        if (savedInstanceState == null) {
 //            // Add the fragment on initial activity setup
@@ -27,7 +29,7 @@ public class MyActivity extends FragmentActivity {
 //            // Or set the fragment from restored state info
 //            mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
 //        }
-        imageView = (ImageView) findViewById(R.id.imageview_profile);
+
     }
 
     @Override
@@ -48,7 +50,10 @@ public class MyActivity extends FragmentActivity {
     @Subscribe
     public void getId(Model user_id) {
 //       imageView.setProfileId(user_id.getUser_id());
-        Picasso.with(getApplicationContext()).load(user_id.getUser_id()).into(imageView);
+        Intent intent = new Intent(MyActivity.this, ProfileActivity.class);
+        intent.putExtra("profile_image_url", user_id.getUser_id());
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "aloo", Toast.LENGTH_LONG).show();
 
     }
 }
